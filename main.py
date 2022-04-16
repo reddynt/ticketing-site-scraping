@@ -60,7 +60,7 @@ while True:
     print(f"Total new theatres: {len(theatres)}")
 
     message = MIMEMultipart("alternative")
-    message["Subject"] = f"KGF Chapter-2. New theatres: {len(theatres)}"
+    message["Subject"] = f"New theatres: {len(theatres)}"
     
     # part1 = MIMEText(text, "plain")
     part2 = MIMEText(html, "html")
@@ -70,25 +70,17 @@ while True:
 
     # sending email
     port = 465
-    password = "gmaiL.t#3n"
 
     # create a secure SSL context
     context = ssl.create_default_context()
 
+    sender_email = input("Enter your email ID: ")
+    password = input("Input your password and hit Enter: ")
+    receiver_email = input("Enter receiver email ID: ")
+
     with smtplib.SMTP_SSL("smtp.gmail.com", port, context=context) as server:
-        server.login("tharun313@gmail.com", password)
-        sender_email = "tharun313@gmail.com"
-        reciever_email = "bujalapravalikareddy@gmail.com"
-        # message = "\n" + json.dumps(theatres)
+        server.login(user_email, password)
         server.sendmail(sender_email, reciever_email, message.as_string())
 
     print(f"Email sent. Sleeping for {sleep_time} secs.")
     time.sleep(sleep_time)
-
-
-# <div class="showtime-pill-container" data-online="Y">
-# <a class="showtime-pill" data-attributes="" 
-# data-availability="A" data-cat-popup='[{"price":"175.00","desc":"Balcony","availabilityClass":"_available","availabilityText":"Available"}]' 
-# data-cut-off-date-time="202204100815" data-date-time="10:45 AM" data-display-showtime="10:45 AM" data-event-id="ET00094579" data-is-atmos-enabled="N" 
-# data-is-unpaid="0" data-price-filter-index="[2]" data-seats-percent="89" data-session-id="20798" data-session-popup-desc="" 
-# data-showtime-code="1045" data-showtime-filter-index="morning" data-unpaid-quota="0" data-venue-code="PTTH" href="/booktickets/PTTH/20798">
